@@ -53,8 +53,6 @@ Rust-eze provides a reusable, typed plugin contract and registry, wrapped by a F
 
 ### Live URLs
 
-The site runs on **HTTPS port 8123**, independently of Apache (which continues hosting other sites on ports 80/443).
-
 | Destination | URL |
 | --- | --- |
 | Website | <https://appdevdesign.com:8123/> |
@@ -87,8 +85,6 @@ Browser / Postman / React dashboard
            |                 |                  |
        Rusteze DB       .data/files       In-memory history
 ```
-
-**Current hosting:** Intel Mac running macOS Ventura 13.7.8, Node.js, Fastify and an existing local MySQL server. Node.js serves the website, dashboard and API on port 8123. **Apache is not modified or used as a proxy for Rust-eze.**
 
 ## Tech stack
 
