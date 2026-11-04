@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Harold Paulino">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c1d">
+  <meta name="description" content="Rust-eze: the Universal Plugin SDK refresher. Scraping years of rust off my TypeScript and SDK skills, one plugin at a time.">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon-rusteze.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Rust-eze — Get the rust off your SDK skills</title>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap navline">
+  <a class="logo" href="#top" aria-label="Rust-eze home"><span class="logo-icon">R<span>✦</span></span><span>Rust<span class="hyphen">-</span>eze<small>THE SDK DE-RUSTIFIER</small></span></a>
+  <nav aria-label="Main navigation"><a href="#story">The diagnosis</a><a href="#toolkit">The treatment</a><a href="#playground">SDK playground</a><a href="#under-the-hood">Under the hood</a><a href="#postman">Postman tests</a><a href="/graphql-playground.html">GraphQL lab</a><a href="/postman-viewer.html">Browse requests</a></nav>
+  <a class="btn btn-small btn-outline nav-cta" href="#playground">Try the polish <span aria-hidden="true">↗</span></a>
+</div></header>
+<main id="main">
+<section class="hero wrap" id="top">
+  <div class="hero-copy"><div class="pill"><span class="pulse"></span> THE GREAT SDK REFRESH • VERSION 4.3</div>
+   <p class="overline">A VERY SERIOUS EXPERIMENT IN UNSERIOUS MAINTENANCE</p>
+   <h1>Turns out SDK skills <em>can</em> get <span class="rust-text">rusty.</span><br><span class="metal-text">Let's fix that.</span></h1>
+   <p class="intro">I've built SDKs before. Then life happened, meetings multiplied, and a fine layer of technical oxidation appeared. <strong>Rust-eze</strong> is my hands-on TypeScript workout: a universal plugin SDK that scrapes the rust away—without scraping away the architecture.</p>
+   <div class="actions"><a href="#playground" class="btn btn-primary">Fire up the wire brush <span aria-hidden="true">↗</span></a><a href="#under-the-hood" class="btn btn-outline">Inspect the engine <span aria-hidden="true">→</span></a></div>
+   <div class="proof"><span><b>100%</b> TypeScript ambition</span><span><b>1</b> MySQL-powered engine</span><span><b>∞</b> elbow grease</span></div>
+  </div>
+  <div class="hero-art"><img src="./assets/sdk-rust-removal.svg" width="1200" height="710" alt="Rust being scraped from large SDK letters, exposing polished chrome metal with flying sparks"><div class="stamp"><strong>BEFORE</strong><span>CRUSTY</span><span class="arrow">↓</span><strong>AFTER</strong><span>SHINY</span></div></div>
+</section>
+<section id="story" class="diagnosis"><div class="wrap diagnosis-inner"><div><span class="kicker">01 / THE DIAGNOSIS</span><h2>A little rust.<br><em>A lot of potential.</em></h2></div><div class="story-body"><p>Somewhere between shipping production apps and remembering what a dependency injection container actually does, my SDK knowledge started collecting dust. Not the charming vintage kind. The “wait, which lifecycle hook is that?” kind.</p><p>So I built a refresher with <strong>real interfaces, real plugin lifecycles, and real TypeScript</strong>. No magic wand. No questionable miracle spray. Just a solid architecture and a suspicious amount of coffee.</p><div class="quote">“If it compiles on the first try, check whether you accidentally opened the README.” <span>— an extremely credible developer proverb</span></div></div></div></section>
+<section id="toolkit" class="wrap toolkit"><div class="section-top"><div><span class="kicker">02 / THE TREATMENT PLAN</span><h2>Scrape. Polish. <em>Ship.</em></h2><p>One layer of SDK corrosion removed at a time.</p></div><span class="mini-mark">NO WD-40 REQUIRED*</span></div>
+ <div class="treatment-grid">
+  <article class="treatment"><img src="./assets/scrape-sdk.svg" width="880" height="510" loading="lazy" alt="Early-stage rust scraping exposes part of shining SDK lettering"><div class="treatment-body"><span class="step">STEP 01 / SCRAPE</span><h3>Knock off the old syntax</h3><p>Refresh TypeScript contracts, plugin manifests, typed operations, and the occasional semicolon-shaped regret.</p><span class="tiny-tag">interfaces · types · validation</span></div></article>
+  <article class="treatment"><img src="./assets/polish-sdk.svg" width="880" height="510" loading="lazy" alt="More rust cleaned away from SDK letters, showing brushed silver beneath"><div class="treatment-body"><span class="step">STEP 02 / POLISH</span><h3>Get the gears moving</h3><p>Register plugins, toggle lifecycles, dispatch events, and pretend the first stack trace was a planned feature.</p><span class="tiny-tag">registry · lifecycle · events</span></div></article>
+  <article class="treatment"><img src="./assets/shine-sdk.svg" width="880" height="510" loading="lazy" alt="Almost completely cleaned, metallic SDK letters glowing after rust removal"><div class="treatment-body"><span class="step">STEP 03 / SHIP</span><h3>Make the metal shine</h3><p>Exercise the architecture through an interactive sandbox. A real MySQL database now backs the full-stack mode. Turns out databases like a little attention too.</p><span class="tiny-tag">plugins · operations · testing</span></div></article>
+ </div><p class="asterisk">*Also no actual physical rust removal implied. Your car is on its own.</p>
+</section>
+<section class="lab-section" id="playground"><div class="wrap"><div class="section-top"><div><span class="kicker">03 / HANDS-ON LAB</span><h2>The SDK <em>test bench.</em></h2><p>Switch between a browser-only simulation and real MySQL-backed API operations.</p></div><div class="live-chip"><span class="pulse"></span> BROWSER DEMO + LIVE API</div></div>
+<div class="lab"><div class="lab-header"><div class="terminal-leds"><i></i><i></i><i></i></div><strong>RUST-EZE // PLUGIN CONTROL PANEL</strong><span class="demo-badge" id="mode-indicator">STATIC MODE · NO BACKEND</span></div>
+ <div class="mode-bar"><label for="mode-select">Run mode</label><select id="mode-select"><option value="browser">Browser simulation (no backend)</option><option value="live">Live API + MySQL</option></select><label for="api-key">Admin API key (live only)</label><input id="api-key" type="password" autocomplete="off" placeholder="Enter key from .env" /><button id="check-api" type="button">Check API</button><span id="connection-status" role="status">Browser mode is ready.</span></div>
+ <div class="lab-content"><div class="plugin-column"><h3>Installed treatments</h3><p class="muted">Toggle plugin lifecycles, just like in the full SDK.</p><div id="plugin-list" class="plugin-list"></div><div class="lab-fact"><span>✧</span> Browser mode is simulated. Live mode sends operations to the real Fastify SDK API.</div></div>
+ <div class="operation-column"><h3>Operation playground</h3><label for="plugin-select">Plugin</label><select id="plugin-select"></select><label for="operation-select">Operation</label><select id="operation-select"></select><label for="input-json">Input JSON</label><textarea id="input-json" spellcheck="false" rows="6"></textarea><button id="run-operation" class="btn btn-primary run-btn">▶ Execute operation</button><div class="output-heading"><span>Response</span><button id="reset-demo" type="button">↻ Reset demo</button></div><pre id="operation-output" aria-live="polite">// Waiting for an operation... much like my knowledge of SDKs in 2024.</pre></div>
+ <div class="events-column"><h3>Shop-floor activity</h3><p class="muted">Dates: MM/DD/YYYY HH:mm MST (UTC−07:00)</p><p class="muted">The logbook. A developer's best friend, after coffee.</p><div id="event-list" class="event-list" aria-live="polite"></div></div></div>
+ </div><p class="lab-disclaimer">Browser mode is an offline simulation. Select Live API + MySQL for real persisted notes and the actual SDK plugin registry. Live changes require the admin key; do not expose the key on a public site.</p>
+</div></section>
+<section class="wrap under" id="under-the-hood"><div><span class="kicker">04 / UNDER THE HOOD</span><h2>Jokes on the surface.<br><em>Solid engineering beneath.</em></h2><p>Behind the shiny landing page is the real Rust-eze SDK project: a TypeScript plugin registry, lifecycle management, a Fastify REST API, three working plugin adapters, a React admin dashboard, and standalone macOS deployment.</p><div class="feature-grid"><div><b>Type-safe SDK</b><span>Contracts and lifecycle APIs</span></div><div><b>Plugin architecture</b><span>MySQL, storage, notifications</span></div><div><b>REST + observability</b><span>Fastify and event history</span></div><div><b>Native Node + tests</b><span>Standalone HTTPS on macOS</span></div></div><a class="btn btn-outline" href="./README-web.html">See website deployment notes <span aria-hidden="true">→</span></a></div><div class="blueprint"><div class="bp-title">SYSTEM DIAGRAM // NO FANCY ACRONYMS REQUIRED</div><div class="bp-box">React dashboard<span>the shiny control surface</span></div><div class="bp-connector">↓</div><div class="bp-box">Fastify API<span>the foreman</span></div><div class="bp-connector">↓</div><div class="bp-box highlighted">TypeScript SDK registry<span>the actual engine</span></div><div class="bp-connector">↓</div><div class="bp-leaves"><span>MySQL</span><span>Files</span><span>Notify</span></div><small>*The root website is standalone in browser mode and can also talk to the API.</small></div></section>
+<section class="wrap graphql-section" id="graphql"><div class="graphql-panel"><div><span class="kicker">05 / GRAPHQL WORKSHOP</span><h2>One endpoint. <em>Plenty of questions.</em></h2><p>Ask the SDK for exactly the fields you want. Real plugin status, SDK events, MySQL notes and lifecycle mutations—all on <code>POST /graphql</code>. If only all interviews were this strongly typed.</p><a class="btn btn-primary" href="/graphql-playground.html">Launch the GraphQL workshop →</a></div><div class="graphql-snippet"><span>GraphQL Query</span><pre>query {
+  plugins {
+    id
+    name
+    state
+  }
+}</pre><small>Same registry. New vocabulary. No rust.</small></div></div></section>
+<section class="wrap postman-section" id="postman" aria-labelledby="postman-heading">
+  <div class="postman-panel">
+    <div>
+      <span class="kicker">05 / QUALITY ASSURANCE, WITH A WIRE BRUSH</span>
+      <h2 id="postman-heading">Put the SDK <em>through its paces.</em></h2>
+      <p>Some developers collect stamps. I collect HTTP status codes. Grab the ready-to-import Postman collection to test the website, React dashboard, plugin lifecycles, MySQL notes, storage and simulated notifications.</p>
+      <p class="postman-hint">The demo collection uses <code>https://appdevdesign.com:8123</code> and sample API key <code>booya-admin-key</code>. Match <code>ADMIN_API_KEY</code> on your server before running authenticated tests. The sample key is public and intended only for this demo.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/postman/Rust-eze.postman_collection.json" download>↓ Download Postman collection</a>
+        <a class="btn btn-outline" href="/postman-viewer.html">Browse all 42 requests →</a>
+        <a class="btn btn-outline" href="/postman/Rust-eze-HTTPS-8123.postman_environment.json" download>↓ Download environment</a>
+        <a class="btn btn-outline" href="/dashboard/">Open React dashboard →</a>
+      </div>
+    </div>
+    <div class="postman-recipe"><strong>THE 4-STEP DE-RUSTING TEST</strong><ol><li>Import the collection (and optional environment) into Postman.</li><li>Set the demo API key in your local <code>.env</code> and restart Rust-eze, or update the Postman variable.</li><li>Run <b>Health → List plugins → MySQL addNote → listNotes</b>.</li><li>Try storage, notifications, events and paired disable/enable tests.</li></ol><small>Works independently of Apache. No welding mask required. The request browser lets you read each test before Postman gets any ideas.</small></div>
+  </div>
+</section>
+<section class="closing"><div class="wrap closing-inner"><span class="kicker">END OF SERVICE REPORT</span><h2>Less rust.<br><span>More confidence.</span></h2><p>The goal isn't to pretend I never forgot a thing. It's to prove I can pick the tools back up, build something useful, and leave the SDK cleaner than I found it.</p><a class="btn btn-primary" href="#playground">One more lap around the test bench ↗</a><div class="closing-gleam">✦</div></div></section>
+</main><footer class="site-footer"><div class="wrap foot-row"><span class="foot-brand">Rust-eze <b>✦</b></span><span>Crafted by Harold Paulino · SDK maintenance, with personality.</span><span>© <span id="year">2026</span> Rust-eze</span></div></footer>
+<script src="./date-format.js" defer></script>
+<script src="./app.js" defer></script>
+</body></html>

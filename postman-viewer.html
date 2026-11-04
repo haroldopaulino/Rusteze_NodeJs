@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Harold Paulino">
+<meta name="description" content="Browse every Rust-eze Postman request, header, sample payload, and test script without leaving the website.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon-rusteze.svg">
+<link rel="stylesheet" href="/postman-viewer.css">
+<title>Postman Under the Microscope · Rust-eze</title>
+</head>
+<body>
+<a class="skip" href="#request-detail">Skip to request details</a>
+<header class="viewer-top"><a class="brand" href="/">✦ Rust-eze <small>SDK REPAIR SHOP</small></a><nav><a href="/">← Back to workshop</a><a href="/dashboard/">Dashboard</a><a class="nav-download" href="/postman/Rust-eze.postman_collection.json" download>↓ Download collection</a></nav></header>
+<main>
+<section class="intro"><span class="eyebrow">INSPECTION BAY / POSTMAN COLLECTION</span><h1>Every request. <em>Under the hood.</em></h1><p>42 ways to politely interrogate a TypeScript SDK. Select any request to inspect its URL, headers, JSON payload, test scripts, and cURL equivalent. No endpoint was harmed in the making of this documentation.</p><div class="quicklinks"><a href="/postman/Rust-eze.postman_collection.json" download>↓ Collection JSON</a><a href="/postman/Rust-eze-HTTPS-8123.postman_environment.json" download>↓ Environment JSON</a><a href="/postman/Rust-eze.postman_collection.json" target="_blank" rel="noopener">View raw collection ↗</a></div><p class="note">Viewer is read-only: it doesn't send API requests. To exercise the SDK, use Postman, the React dashboard or the included cURL examples. The demonstration key is intentionally public.</p></section>
+<section class="viewer" aria-label="Collection request browser"><aside class="sidebar"><div class="sidebar-top"><h2>Parts inventory <span id="count">…</span></h2><label for="search">Find a request</label><input id="search" type="search" placeholder="Search names, paths, or methods" autocomplete="off"><div id="sidebar-status" role="status">Loading collection…</div></div><nav aria-label="Postman requests" id="request-list"></nav></aside>
+<article class="detail" id="request-detail" tabindex="-1"><div class="detail-placeholder" id="placeholder"><span class="huge">{ }</span><h2>Select a request</h2><p>The SDK won't debug itself. Trust me, I asked.</p></div><div id="request-content" hidden><div class="detail-head"><span class="method" id="method"></span><h2 id="request-name"></h2></div><p id="request-description"></p><label class="section-label" for="endpoint">Request URL</label><div class="copyrow"><code id="endpoint"></code><button id="copy-url" type="button">Copy URL</button></div><div class="detail-grid"><div><h3>Request headers</h3><pre id="headers"></pre></div><div><h3>Request body</h3><pre id="body"></pre></div></div><h3>Postman test scripts</h3><pre id="tests"></pre><h3>cURL example</h3><div class="codebox"><button id="copy-curl" type="button">Copy cURL</button><pre id="curl"></pre></div><details><summary>Complete request JSON (as in Postman)</summary><pre id="raw"></pre></details><p class="request-joke" id="joke"></p></div></article></section>
+</main>
+<footer>Crafted by Harold Paulino · The only thing more persistent than MySQL is an intermittent bug. <a href="/">Return to Rust-eze</a></footer>
+<script src="/postman-viewer.js" defer></script>
+</body></html>

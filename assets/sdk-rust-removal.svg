@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="710" viewBox="0 0 1200 710" role="img" aria-label="Rust is scraped from big SDK letters to reveal polished shiny silver metal">
+<defs>
+ <linearGradient id="metal" x1="0" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#fffdf1"/><stop offset=".13" stop-color="#c0d0d0"/><stop offset=".28" stop-color="#566c75"/><stop offset=".43" stop-color="#f1ffff"/><stop offset=".52" stop-color="#93a6ae"/><stop offset=".7" stop-color="#ecf4eb"/><stop offset=".86" stop-color="#63737a"/><stop offset="1" stop-color="#fcffff"/></linearGradient>
+ <linearGradient id="rust" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#351b16"/><stop offset=".22" stop-color="#aa441b"/><stop offset=".4" stop-color="#e38336"/><stop offset=".56" stop-color="#73351b"/><stop offset=".8" stop-color="#c65723"/><stop offset="1" stop-color="#2b2625"/></linearGradient>
+ <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#152024"/><stop offset="1" stop-color="#071012"/></linearGradient>
+ <filter id="rough" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="3" seed="12" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="11"/></filter>
+ <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence baseFrequency=".45" numOctaves="3" seed="6" stitchTiles="stitch" type="fractalNoise"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".12"/></feComponentTransfer></filter>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+ <clipPath id="letters"><text x="605" y="385" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-weight="900" font-size="275" letter-spacing="-10">SDK</text></clipPath>
+</defs>
+<rect width="1200" height="710" rx="42" fill="url(#dark)"/>
+<path d="M0 525 Q200 465 420 565 T860 555 T1200 520 V710 H0Z" fill="#243133" opacity=".35"/>
+<circle cx="622" cy="330" r="290" fill="#d58a40" opacity=".085" filter="url(#glow)"/>
+<g clip-path="url(#letters)"><rect width="1200" height="700" fill="url(#metal)"/>
+<path d="M0 0H1200V187L1050 200 970 244 895 270 855 253 800 310 730 286 680 305 626 289 572 307 528 287 484 338 440 315 390 344 345 318 310 388 260 350 180 392 120 372 0 400Z" fill="url(#rust)" filter="url(#rough)"/>
+<path d="M0 0H1200V165L1000 200 910 228 780 254 700 240 610 274 510 252 420 291 300 307 200 360 0 335Z" fill="url(#rust)"/>
+<path d="M0 360L220 300 300 335 355 280 400 310 462 273 525 297 573 262 625 292 688 256 750 274 813 233 900 252 960 200 1200 160" stroke="#f6b66e" stroke-width="9" fill="none" opacity=".7"/>
+<rect width="1200" height="710" filter="url(#grain)" opacity=".8"/>
+<path d="M0 405Q420 445 610 395T1200 432" stroke="#fff" stroke-width="5" opacity=".28" fill="none"/>
+</g>
+<g transform="translate(815 455) rotate(-24)"><path d="M-35 -20 H200 V45 H-35Z" fill="#7e4b2d" stroke="#df9c5d" stroke-width="6"/><path d="M-35 -28 H64 V52 H-35Z" fill="#d6dce0" stroke="#fff" stroke-width="4"/><path d="M-40 -35 H-14 V59 H-40Z" fill="#f6f5e9"/></g>
+<g stroke="#ffd281" stroke-linecap="round" fill="none"><path d="M795 410l-65 -59" stroke-width="4"/><path d="M779 421l-91 5" stroke-width="3"/><path d="M788 397l-25 -90" stroke-width="3"/><path d="M810 390l28 -69" stroke-width="2"/><path d="M763 396l-53 -22" stroke-width="2"/></g>
+<g fill="#ffe3a3"><circle cx="730" cy="347" r="6"/><circle cx="705" cy="428" r="4"/><circle cx="769" cy="301" r="4"/><circle cx="850" cy="316" r="3"/></g>
+<text x="600" y="580" text-anchor="middle" fill="#d5cdc1" font-family="Arial,sans-serif" font-size="24" letter-spacing="7">SCRAPE THE RUST. SHIP THE SDK.</text>
+<path d="M65 59H167M1033 59H1135M65 650H167M1033 650H1135" stroke="#a75c33" stroke-width="2"/>
+</svg>

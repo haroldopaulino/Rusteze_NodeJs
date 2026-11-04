@@ -1,0 +1,11 @@
+import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const collection=JSON.parse(readFileSync('postman/Rust-eze.postman_collection.json','utf8'));
+const entries=collection.item.flatMap(group=>group.item||[]);
+assert.equal(entries.length,42);
+assert(entries.every(item=>item.request?.method&&item.request?.url));
+for(const file of ['postman-viewer.html','postman-viewer.css','postman-viewer.js'])assert(readFileSync(file,'utf8').length>100);
+const routes=readFileSync('apps/api/src/website.ts','utf8');
+for(const path of ['/postman-viewer.html','/postman-viewer.css','/postman-viewer.js'])assert(routes.includes(path));
+assert(readFileSync('index.html','utf8').includes('href="/postman-viewer.html"'));
+console.log('Postman viewer routes and 42 collection requests validated.');

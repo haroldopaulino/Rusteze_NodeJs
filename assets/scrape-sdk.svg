@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="510" viewBox="0 0 880 510" role="img" aria-label="SCRAPE THE SYNTAX: corroded SDK lettering being cleaned to shiny metal"><defs>
+ <linearGradient id="metal" x1="0" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#fffdf1"/><stop offset=".13" stop-color="#c0d0d0"/><stop offset=".28" stop-color="#566c75"/><stop offset=".43" stop-color="#f1ffff"/><stop offset=".52" stop-color="#93a6ae"/><stop offset=".7" stop-color="#ecf4eb"/><stop offset=".86" stop-color="#63737a"/><stop offset="1" stop-color="#fcffff"/></linearGradient>
+ <linearGradient id="rust" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#351b16"/><stop offset=".22" stop-color="#aa441b"/><stop offset=".4" stop-color="#e38336"/><stop offset=".56" stop-color="#73351b"/><stop offset=".8" stop-color="#c65723"/><stop offset="1" stop-color="#2b2625"/></linearGradient>
+ <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#152024"/><stop offset="1" stop-color="#071012"/></linearGradient>
+ <filter id="rough" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="3" seed="12" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="11"/></filter>
+ <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence baseFrequency=".45" numOctaves="3" seed="6" stitchTiles="stitch" type="fractalNoise"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".12"/></feComponentTransfer></filter>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+ <clipPath id="letters"><text x="605" y="385" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-weight="900" font-size="275" letter-spacing="-10">SDK</text></clipPath>
+</defs>
+    <rect width="880" height="510" rx="24" fill="#142123"/>
+    <g transform="translate(-170 -15) scale(.74)" clip-path="url(#letters)"><rect width="1200" height="710" fill="url(#metal)"/><path d="M0 0H660L750 120 630 240 715 330 600 480 0 520Z" fill="url(#rust)" filter="url(#rough)"/><rect width="1200" height="710" filter="url(#grain)"/></g>
+    <path d="M600 130 l45 -60 m-60 40 35 -60" stroke="#ffcc79" stroke-width="3" stroke-linecap="round"/>
+    <text x="440" y="450" fill="#f4b06b" font-family="Arial,sans-serif" font-weight="bold" letter-spacing="6" text-anchor="middle" font-size="19">SCRAPE THE SYNTAX</text>
+    </svg>

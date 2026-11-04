@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#162829"><link rel="icon" href="/assets/favicon-rusteze.svg" type="image/svg+xml"><title>Rust-eze — macOS deployment notes</title><style>body{font:16px/1.65 system-ui,sans-serif;background:#142224;color:#f4f4ee;max-width:920px;margin:0 auto;padding:28px 20px 80px}a{color:#f6b877}h1,h2{line-height:1.25}h1{font-size:2.3rem}h2{margin-top:34px;border-bottom:1px solid #44585a;padding-bottom:9px}pre{background:#27383b;padding:16px 20px;overflow:auto;border-radius:10px;color:#dbf7ea;font-size:14px}code{color:#f9d6a9}pre code{color:inherit}.note{padding:12px 18px;border-left:4px solid #e4a369;background:#203536;border-radius:4px}li{margin:8px 0}.meta{color:#acc2bc}nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}nav a{text-decoration:none}footer{margin-top:40px;color:#b1c0b8;font-size:13px}</style></head><body>
+<nav><a href="/">← Back to Rust-eze</a><a href="/dashboard/">Open the React dashboard →</a></nav>
+<p class="meta">RUST-EZE / DEPLOYMENT NOTES / NATIVE INTEL MAC / VERSION 4.2</p><h1>Stand-alone Node.js, HTTPS, and local MySQL.</h1><p>Rust-eze runs on an Intel Mac using macOS Ventura 13.7.8, Node.js, Fastify and an existing local MySQL server. The same Fastify process serves the Rust-eze website at <code>/</code>, React dashboard at <code>/dashboard/</code>, and REST API at <code>/api/</code>. It listens on <strong>HTTPS port 8123</strong>; Apache continues to serve your other sites independently on ports 80 and 443.</p>
+<h2>1. Install and build</h2><p>Install Node.js 22 for macOS Intel x64, then from the Rust-eze directory:</p><pre><code>cd /usr/local/var/www/appdevdesigndotcom/rusteze
+npm install
+npm run build
+npm test
+npm run test:date-format</code></pre>
+<h2>2. Configure the local MySQL database</h2><p>Rust-eze uses your existing MySQL server and the <code>Rusteze</code> schema. In <code>config/database.env</code>, set your actual application credentials:</p><pre><code>MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3306
+MYSQL_DATABASE=Rusteze
+MYSQL_USER=rusteze
+MYSQL_PASSWORD=YOUR_APPLICATION_PASSWORD</code></pre><p>Use a dedicated MySQL application user. Do not publish your database password.</p>
+<h2>3. Configure the HTTPS listener</h2><p>In the server's private <code>.env</code> file:</p><pre><code>PORT=8123
+API_HOST=0.0.0.0
+CORS_ORIGIN=https://appdevdesign.com:8123
+ADMIN_API_KEY=YOUR_OWN_ADMIN_API_KEY</code></pre><p>The startup script reads <code>config/tls.env</code>, which reuses the <strong>same existing Sectigo certificate files that Apache uses</strong>, without changing Apache:</p><pre><code>TLS_CERT_FILE=/usr/local/etc/openssl@3/certs/appdevdesigndotcom/2026/appdevdesign.com.crt
+TLS_KEY_FILE=/usr/local/etc/openssl@3/certs/appdevdesigndotcom/2026/appdevdesign.com_key.txt
+TLS_CHAIN_FILE=/usr/local/etc/openssl@3/certs/appdevdesigndotcom/2026/appdevdesign.com.ca-bundle</code></pre><p>Fastify supplies the leaf certificate and intermediate CA chain to Node.js HTTPS; the matching private key stays on the Mac. Your Node.js service account must have secure read access to these files. Never move the private key into a public directory or weaken its permissions.</p>
+<h2>4. Start the service</h2><pre><code>bash scripts/start-macos.sh</code></pre><p>Keep the terminal open while testing. For unattended startup, adapt the <code>deployment/launchd/</code> service example. The existing router rule forwards external TCP 8123 to the Mac's TCP 8123. No Apache changes or new public 80/443 listeners are required.</p>
+<h2>5. Verify HTTPS and SDK functionality</h2><pre><code>curl --resolve appdevdesign.com:8123:127.0.0.1 \
+  https://appdevdesign.com:8123/health
+
+# From the Mac only, with your actual API key loaded:
+curl -sS https://127.0.0.1:8123/api/plugins \
+  -k -H "X-API-Key: $ADMIN_API_KEY"</code></pre><p>Then open <a href="https://appdevdesign.com:8123/">the website</a> and <a href="https://appdevdesign.com:8123/dashboard/">the React dashboard</a>. The browser-only playground needs no database; Live mode requires MySQL and a matching API key. For scripted API tests, <a href="/postman/Rust-eze.postman_collection.json">download the Postman collection</a>.</p>
+<h2>6. Certificate renewal and security</h2><p>Rust-eze reads its TLS certificate on startup. After your certificate renews, restart Rust-eze to load the new certificate, key, and chain. If the versioned <code>2026</code> directory changes, update <code>config/tls.env</code> first.</p><p class="note">The HTTPS site is public, but this demonstration also exposes administrative plugin operations behind an API key. The published Postman sample key is intentionally public: do not use it to protect real data. Keep secrets outside the public site and restrict access to admin endpoints as appropriate.</p>
+<h2>7. Timestamp display</h2><p>The website and dashboard display timestamps in <strong>fixed MST (UTC−07:00)</strong>, year-round, using <code>MM/DD/YYYY HH:mm MST</code>, for example <code>11/03/2026 22:23 MST</code>. REST API responses retain ISO 8601 UTC timestamps for machine clients.</p>
+<footer>Rust-eze SDK repair shop · If the build works, don't poke the rust too hard.</footer><section style="max-width:920px;margin:20px auto;padding:25px"><h2>GraphQL workshop</h2><p>Alongside the REST API, Rust-eze offers a live GraphQL endpoint at <code>POST /graphql</code>, secured by the same X-API-Key. Open <a href="/graphql-playground.html">GraphQL Workshop</a> for query and mutation examples using the real MySQL and plugin registry.</p></section></body></html>

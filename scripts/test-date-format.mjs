@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
+const scope={Intl,Date};
+runInNewContext(readFileSync(new URL('../date-format.js',import.meta.url),'utf8'),scope);
+const dates=scope.RustezeDateTime;
+assert.equal(dates.format('2026-11-04T05:23:40.205Z'),'11/03/2026 22:23 MST');
+assert.equal(dates.format('2026-07-01T19:05:00Z'),'07/01/2026 12:05 MST');
+assert.equal(dates.format('2026-01-01T07:00:00Z'),'01/01/2026 00:00 MST');
+assert.equal(dates.format('2026-07-01T06:59:00Z'),'06/30/2026 23:59 MST');
+assert.equal(dates.displayValue({timestamp:'2026-11-04T05:23:40.205Z'}).timestamp,'11/03/2026 22:23 MST');
+assert.equal(dates.displayValue({timestamp:'not a date'}).timestamp,'not a date');
+console.log('Date display format checks passed (fixed MST, year-round).');

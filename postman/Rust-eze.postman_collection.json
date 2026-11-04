@@ -1,0 +1,1405 @@
+{
+  "info": {
+    "_postman_id": "8eaef7cf-377e-4137-92c5-a62e7bc07790",
+    "name": "Rust-eze v4.1 — HTTPS Website + SDK API (8123)",
+    "description": "Full Rust-eze demo. Public static website and dashboard URLs, Fastify SDK API, MySQL, storage and notification sample operations, lifecycle controls and negative tests. Default adminApiKey=booya-admin-key (demonstration only). Change .env ADMIN_API_KEY to this value and restart Rust-eze, or change the collection variable to your real key. The website and collection are public; never use this sample key for a sensitive production API. Run the collection in folder order; disable/enable pairs are adjacent. Host: https://appdevdesign.com:8123. All routes verified against v3.6 source and new collection-download routes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 Website, Dashboard & Downloads",
+      "item": [
+        {
+          "name": "Homepage /",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/",
+            "description": "Public rust-removal landing page."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"HTML homepage\", () => pm.expect(pm.response.text()).to.include(\"Rust-eze\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Homepage /index.html",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/index.html",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "React dashboard /dashboard/",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/dashboard/",
+            "description": "React admin dashboard; requires npm run build."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"HTML dashboard\", () => pm.expect(pm.response.text()).to.include(\"html\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dashboard redirect /dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/dashboard",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Dashboard resolves\", () => pm.expect([200,301,302,307,308]).to.include(pm.response.code));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Homepage JavaScript /app.js",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/app.js",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Homepage stylesheet /styles.css",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/styles.css",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Favicon /favicon.svg",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/favicon.svg",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rust-removal illustration",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/assets/sdk-rust-removal.svg",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Scrape SDK illustration",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/assets/scrape-sdk.svg",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Polish SDK illustration",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/assets/polish-sdk.svg",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Shine SDK illustration",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/assets/shine-sdk.svg",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Website notes /README-web.html",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/README-web.html",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Postman collection download",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/postman/Rust-eze.postman_collection.json",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Postman v2.1 collection\", () => pm.expect(pm.response.json().info.schema).to.include(\"v2.1\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Postman environment download",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/postman/Rust-eze-HTTPS-8123.postman_environment.json",
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 SDK API: Health, Registry & Events",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health",
+            "description": "Unauthenticated health check."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"healthy\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List plugins",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/plugins",
+            "description": "Returns plugin registry and each state."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Three SDK plugins\", () => pm.expect(pm.response.json().plugins.map(p => p.id)).to.include.members([\"mysql\",\"storage\",\"notifications\"]));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List SDK events",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/events",
+            "description": "Inspect SDK registration and lifecycle events."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Event list\", () => pm.expect(pm.response.json()).to.have.property(\"events\"));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 MySQL Examples",
+      "item": [
+        {
+          "name": "MySQL: addNote",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Execute mysql.addNote via the SDK plugin registry.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"mysql\",\n  \"operation\": \"addNote\",\n  \"input\": {\n    \"text\": \"Rust-eze Postman demo: SDK cleaned, database polished!\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test('Result exists', () => pm.expect(pm.response.json()).to.have.property('result'));",
+                  "pm.test('Inserted note has ID', () => pm.expect(pm.response.json().result.id).to.be.a('number'));",
+                  "pm.collectionVariables.set('lastNoteId', pm.response.json().result.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "MySQL: listNotes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Execute mysql.listNotes via the SDK plugin registry.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"mysql\",\n  \"operation\": \"listNotes\",\n  \"input\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test('Result exists', () => pm.expect(pm.response.json()).to.have.property('result'));",
+                  "pm.test('Notes array', () => pm.expect(pm.response.json().result).to.be.an('array'));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 File Storage Examples",
+      "item": [
+        {
+          "name": "Storage: writeFile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Execute storage.writeFile via the SDK plugin registry.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"storage\",\n  \"operation\": \"writeFile\",\n  \"input\": {\n    \"name\": \"rusteze-postman-demo.txt\",\n    \"content\": \"Rust-eze storage plugin: the rust is gone, the files remain.\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test('Result exists', () => pm.expect(pm.response.json()).to.have.property('result'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Storage: readFile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Execute storage.readFile via the SDK plugin registry.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"storage\",\n  \"operation\": \"readFile\",\n  \"input\": {\n    \"name\": \"rusteze-postman-demo.txt\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test('Result exists', () => pm.expect(pm.response.json()).to.have.property('result'));",
+                  "pm.test('File content present', () => pm.expect(pm.response.json().result.content).to.include('Rust-eze')); "
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Storage: listFiles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Execute storage.listFiles via the SDK plugin registry.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"storage\",\n  \"operation\": \"listFiles\",\n  \"input\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test('Result exists', () => pm.expect(pm.response.json()).to.have.property('result'));",
+                  "pm.test('Files array', () => pm.expect(pm.response.json().result).to.be.an('array'));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05 Notification Examples",
+      "item": [
+        {
+          "name": "Notifications: send (simulated)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Execute notifications.send via the SDK plugin registry.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"notifications\",\n  \"operation\": \"send\",\n  \"input\": {\n    \"recipient\": \"interviewer@example.invalid\",\n    \"message\": \"SDK demo alert: plugin operations are alive and well.\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test('Result exists', () => pm.expect(pm.response.json()).to.have.property('result'));",
+                  "pm.test('Simulation, not real email', () => pm.expect(pm.response.json().result.status).to.eql('simulated')); "
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Notifications: history",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Execute notifications.history via the SDK plugin registry.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"notifications\",\n  \"operation\": \"history\",\n  \"input\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test('Result exists', () => pm.expect(pm.response.json()).to.have.property('result'));",
+                  "pm.test('History array', () => pm.expect(pm.response.json().result).to.be.an('array'));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "06 Plugin Lifecycle (disable then re-enable)",
+      "item": [
+        {
+          "name": "mysql: disable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/plugins/mysql/disable",
+            "description": "Disable mysql plugin. Run matching enable request immediately afterward."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "mysql: enable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/plugins/mysql/enable",
+            "description": "Re-enable mysql plugin."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "storage: disable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/plugins/storage/disable",
+            "description": "Disable storage plugin. Run matching enable request immediately afterward."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "storage: enable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/plugins/storage/enable",
+            "description": "Re-enable storage plugin."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "notifications: disable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/plugins/notifications/disable",
+            "description": "Disable notifications plugin. Run matching enable request immediately afterward."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "notifications: enable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/plugins/notifications/enable",
+            "description": "Re-enable notifications plugin."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "07 Negative Tests (expected errors)",
+      "item": [
+        {
+          "name": "Missing API key → 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/plugins",
+            "description": "Expected authentication failure."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Unknown plugin → 404",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Expected plugin registry error.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pluginId\": \"nonexistent\",\n  \"operation\": \"run\",\n  \"input\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Expected 4xx\", () => pm.expect(pm.response.code).to.be.within(400,499));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Invalid execute payload → 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/execute",
+            "description": "Zod validation failure.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operation\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GraphQL SDK Demo",
+      "item": [
+        {
+          "name": "Query plugin registry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { plugins { id name state operations version } }\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Query SDK events",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query Events($limit: Int) { events(limit: $limit) { timestamp type payload } }\",\n  \"variables\": {\n    \"limit\": 10\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Query MySQL notes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { notes { id text createdAt } }\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mutation add MySQL note",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"mutation($text: String!) { addNote(text:$text) { id text } }\",\n  \"variables\": {\n    \"text\": \"Postman GraphQL test: rust officially removed.\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Query storage files",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { executePlugin(pluginId:\\\"storage\\\", operation:\\\"listFiles\\\", input:{}) }\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Query notification history",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { executePlugin(pluginId:\\\"notifications\\\", operation:\\\"history\\\", input:{}) }\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mutation disable notification plugin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"mutation { disablePlugin(id:\\\"notifications\\\") { id state } }\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mutation enable notification plugin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"mutation { enablePlugin(id:\\\"notifications\\\") { id state } }\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Schema introspection",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{adminApiKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { __schema { queryType { name } mutationType { name } } }\",\n  \"variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "GraphQL SDK example. Uses the same live plugin registry as REST."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GraphQL responds\", function () { pm.expect(pm.response.code).to.be.oneOf([200,400]); });",
+                  "pm.test(\"Response is JSON\", function () { pm.response.to.be.json; });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://appdevdesign.com:8123",
+      "type": "string"
+    },
+    {
+      "key": "adminApiKey",
+      "value": "booya-admin-key",
+      "type": "string"
+    },
+    {
+      "key": "lastNoteId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
